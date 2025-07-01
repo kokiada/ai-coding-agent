@@ -205,6 +205,27 @@ python c_agent_reviewer.py review HEAD --show-summary
 chmod +x .git/hooks/pre-commit
 ```
 
+### Ollama設定のカスタマイズ
+
+デフォルトでは、Ollamaは `http://localhost:11434` に接続し、`codellama` モデルを使用します。
+別のOllamaサーバーやモデルを使用したい場合は、設定ファイルが保存されているディレクトリ内の `agent_config.yaml` を直接編集してください。
+
+設定ディレクトリの場所は `config` コマンドで確認できます。
+
+```bash
+python c_agent_reviewer.py config
+```
+
+例: `agent_config.yaml` の `llm_config` セクション
+
+```yaml
+llm_config:
+  model: llama2 # 使用したいモデル名
+  base_url: http://192.168.1.100:11434 # OllamaサーバーのIPアドレスとポート
+  temperature: 0.1
+  context_window: 4096
+```
+
 ### カスタム設定
 
 ```bash
